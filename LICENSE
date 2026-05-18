@@ -1,0 +1,17 @@
+DAAI Console Alpha SDK License
+
+Copyright (c) 2026 DAAI Console.
+
+This SDK is provided for alpha evaluation of DAAI Console. You may use, copy,
+and modify this SDK for the purpose of evaluating, testing, and integrating
+DAAI Console during the alpha period.
+
+Redistribution, resale, or production use outside an active DAAI Console alpha
+or written agreement requires prior written permission from DAAI Console.
+
+THE SDK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN
+CONNECTION WITH THE SDK OR THE USE OR OTHER DEALINGS IN THE SDK.
