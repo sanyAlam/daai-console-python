@@ -2,9 +2,25 @@
 
 This checklist is written for cybersecurity-minded alpha testers evaluating the DAAI Console Python SDK.
 
+## Before Running The Live Scripts
+
+- Sign up or log in to DAAI Console.
+- Create or select a workspace.
+- Copy a server-side API key.
+- Copy the workspace key.
+- Register an action named `send_invoice_reminder`.
+- Set the action policy to `always_require_approval` for the first smoke test.
+- Set the approver email for the workspace/action.
+- Export `DAAI_API_KEY`, `DAAI_WORKSPACE_KEY`, and `DAAI_BASE_URL`.
+- Confirm `DAAI_BASE_URL` points to the API, for example `https://stage.api.daaihq.com`, not the dashboard.
+- Run `python examples/live_client_smoke.py`.
+- Approve the action from the approval email or dashboard.
+- Run `python examples/live_runtime_smoke.py propose`.
+- Run `python examples/live_runtime_smoke.py run-pending` after approval.
+
 ## Setup Verification
 
-- Install the SDK from the local wheel: `pip install ./dist/daai_console-0.1.0a1-py3-none-any.whl`
+- Install the SDK from the local wheel: `pip install ./dist/daai_console-0.1.0a2-py3-none-any.whl`
 - Configure `DAAI_BASE_URL` in a server-side environment.
 - Configure `DAAI_API_KEY` in a server-side environment.
 - Configure `DAAI_WORKSPACE_KEY` in a server-side environment.

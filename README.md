@@ -25,13 +25,13 @@ The developer application owns real business execution, local business logic, ex
 Local wheel during alpha:
 
 ```bash
-pip install ./dist/daai_console-0.1.0a1-py3-none-any.whl
+pip install ./dist/daai_console-0.1.0a2-py3-none-any.whl
 ```
 
 Future PyPI alpha:
 
 ```bash
-pip install daai-console==0.1.0a1
+pip install daai-console==0.1.0a2
 ```
 
 ## Environment
@@ -136,6 +136,54 @@ runner.when_executable(
 executed_count = runner.run_pending_once()
 print(f"Executed {executed_count} approved action(s).")
 ```
+
+## Live Alpha Smoke Tests
+
+The unit tests in `tests/` are mocked SDK-internal tests. They do not call DAAI Console and should remain safe for normal local runs and CI.
+
+The scripts in `examples/live_*.py` are opt-in live smoke tests for alpha testers with real DAAI Console credentials. They call the configured API and should be run manually against a staging or alpha workspace.
+
+Before running live scripts, make sure the action is already registered in your DAAI Console workspace. The default expected action is `send_invoice_reminder`. You can override it with `DAAI_TEST_ACTION_NAME`.
+
+Set required environment variables:
+
+```bash
+export DAAI_API_KEY="..."
+export DAAI_WORKSPACE_KEY="..."
+export DAAI_BASE_URL="https://stage.api.daaihq.com"
+```
+
+`DAAI_BASE_URL` must point to the API, not the dashboard. For staging, use `https://stage.api.daaihq.com`, not `https://stage.daaihq.com`.
+
+Optional environment variables:
+
+```bash
+export DAAI_TEST_ACTION_NAME="send_invoice_reminder"
+export DAAI_PENDING_DB_PATH="./daai_alpha_pending.db"
+```
+
+Run the low-level client smoke test:
+
+```bash
+python examples/live_client_smoke.py
+```
+
+Run the runtime smoke flow:
+
+```bash
+python examples/live_runtime_smoke.py propose
+python examples/live_runtime_smoke.py list-pending
+```
+
+If the proposal returns `pending_approval`, approve it from the approval email or dashboard. The SDK does not auto-approve and does not bypass governance. After approval, run:
+
+```bash
+python examples/live_runtime_smoke.py run-pending
+```
+
+`run-pending` uses `DaaiActionRunner` and a fake executor. It only simulates execution, and only runs when DAAI Console reports `executable=true`.
+
+If the API returns `blocked` or `unknown_action`, it usually means the action is not registered in the workspace, the API/workspace key belongs to another workspace, or the action name does not match exactly. Register the action in the dashboard first, then rerun the script with the same action name.
 
 ## Security Notes
 
