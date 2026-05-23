@@ -22,13 +22,13 @@ The developer application owns real business execution, local business logic, ex
 
 ## Install
 
-Local wheel during alpha:
+From PyPI:
 
 ```bash
-pip install ./dist/daai_console-0.1.0a2-py3-none-any.whl
+pip install daai-console
 ```
 
-Future PyPI alpha:
+Alpha pinning:
 
 ```bash
 pip install daai-console==0.1.0a2
